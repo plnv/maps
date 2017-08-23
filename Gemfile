@@ -52,3 +52,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'jquery-rails'
+
+gem 'nd-uikit', git: 'git@github.com:NinthDecimal/ND-UiKit.git', ref: '38917c79a0ef2644a75a1536d5b6273746d5f680'

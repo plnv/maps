@@ -1,0 +1,26 @@
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Ek1yaUgPesLSbwglvjZ_TV0K-krf25E&callback=initMap", async:true %>
+<%= javascript_include_tag "https://apis.google.com/js/api.js" %>
+<div id="controls">
+
+  <div class="checkbox-glyph toggle-succses toggle-glyph">
+    <label><input type="checkbox" class="js-toggle" link="a" checked />
+      <i></i>
+      <span>A</span>
+    </label>
+  </div>
+  <div class="checkbox-glyph toggle-succses toggle-glyph">
+    <label><input type="checkbox" class="js-toggle" link="b" checked />
+      <i></i>
+      <span>B</span>
+    </label>
+  </div>
+  <div class="checkbox-glyph toggle-succses toggle-glyph">
+    <label><input type="checkbox" class="js-toggle" link="c" checked />
+      <i></i>
+      <span>C</span>
+    </label>
+  </div>
+
+
+</div>
+<div id="map"></div>
