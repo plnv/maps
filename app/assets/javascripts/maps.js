@@ -4,69 +4,79 @@ function initMap() {
   var mapDiv = document.getElementById('map');
   var map = new google.maps.Map(mapDiv, {
     center: new google.maps.LatLng(41.8874453131747, -87.6244597172855),
-    zoom: 16,
+    zoom: 8,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  layerA = new google.maps.FusionTablesLayer({
-    map: map,
-    heatmap: {enabled: false},
-    query: {
-      select: "col2",
-      from: "1uZhN8wZRO6YTxYberuLRX-f4mkMe2rGiqGahvOcl",
-      where: ""
+  var key = 'AIzaSyC_Ek1yaUgPesLSbwglvjZ_TV0K-krf25E';
+  var layers = [
+    {
+      id: '1uZhN8wZRO6YTxYberuLRX-f4mkMe2rGiqGahvOcl',
+      select: 'col2',
+      layer: null,
+      link: 'a'
     },
-    options: {
-      styleId: 2,
-      templateId: 2
-    }
-  });
-
-  layerB = new google.maps.FusionTablesLayer({
-    map: map,
-    heatmap: {enabled: false},
-    query: {
-      select: "col0",
-      from: "1udss4U_rwl-_4hNAF7Ig2LzCjNu8zxwZnroK1R2g",
-      where: ""
+    {
+      id: '1udss4U_rwl-_4hNAF7Ig2LzCjNu8zxwZnroK1R2g',
+      select: 'col0',
+      layer: null,
+      link: 'b'
     },
-    options: {
-      styleId: 2,
-      templateId: 2
+    {
+      id: '11LsnMLQzjk1WJ-yW1j8L7j-VSO0Gy7kWL5VzMXTu',
+      select: 'col0',
+      layer: null,
+      link: 'c'
     }
-  });
 
-  layerC = new google.maps.FusionTablesLayer({
-    map: map,
-    heatmap: { enabled: false },
-    query: {
-      select: "col0",
-      from: "11LsnMLQzjk1WJ-yW1j8L7j-VSO0Gy7kWL5VzMXTu",
-      where: ""
-    },
-    options: {
-      styleId: 2,
-      templateId: 2
-    }
-  });
+  ];
 
-  var layers = {
-    a: layerA,
-    b: layerB,
-    c: layerC,
-  }
 
-  $(function(){
-    $('.js-toggle').on('click', function() {
-
-      var layer = layers[$(this).attr('link')];
-
-      if (layer.getMap() === null) {
-        layer.setMap(map);
-      } else {
-        layer.setMap(null);
+  for (var l in layers) {
+    var item = layers[l];
+    item.layer = new google.maps.FusionTablesLayer({
+      map: map,
+      heatmap: {enabled: false},
+      query: {
+        select: item.select,
+        from: item.id,
+        where: ""
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
       }
-    })
-  })
+    });
 
+
+    $(function () {
+      var layer = item.layer;
+      var link = item.link;
+
+
+      $('.js-toggle[link=' + link + ']').on('click', function () {
+        if (layer.getMap() === null) {
+          layer.setMap(map);
+        } else {
+          layer.setMap(null);
+        }
+      });
+
+
+      var sql = "SELECT COUNT() FROM " + item.id;
+      var url = 'https://www.googleapis.com/fusiontables/v2/query?uploadType=media&alt=json&key=' + encodeURIComponent(key) + '&sql=' + encodeURIComponent(sql) + '&callback=?';
+      $.getJSON(url, function (data) {
+        console.log(data)
+        if (data.error) {
+          alert(data.error.message);
+          return;
+        }
+        $('.js-toggle[link=' + link + ']').parent().find(".qvan").text('(' + data.rows[0] + ')')
+      });
+
+
+    })
+
+  }
 }
+
