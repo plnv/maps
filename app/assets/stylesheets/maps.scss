@@ -14,13 +14,18 @@ html, body {
   padding-left: 20px;
   padding-top: 5px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
 #map {
   height: calc(100% - 50px);
 }
 
+div[link] {
+  display: flex;
+  align-items: center;
+}
+
 .qvan {
-  margin-left: 0px !important;
+  margin-right: 20px;
 }

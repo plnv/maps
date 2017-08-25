@@ -1,28 +1,35 @@
 <%= javascript_include_tag "http://www.google.com/jsapi" %>
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Ek1yaUgPesLSbwglvjZ_TV0K-krf25E&callback=initMap", async:true %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Ek1yaUgPesLSbwglvjZ_TV0K-krf25E&callback=initMap", async: true %>
 
 <div id="controls">
+  <div link="a">
+    <div class="checkbox-glyph toggle-danger toggle-glyph">
+      <label><input type="checkbox" class="js-toggle" checked/>
+        <i></i>
+        <span>Red Lines</span>
+      </label>
+    </div>
+    <div class="qvan">(<span class="now"></span><span class="total">...</span>)</div>
+  </div>
 
-  <div class="checkbox-glyph toggle-succses toggle-glyph">
-    <label><input type="checkbox" class="js-toggle" link="a" checked />
-      <i></i>
-      <span>A</span>
-      <span class="qvan">(...)</span>
-    </label>
+  <div link="b">
+    <div class="checkbox-glyph toggle-succses toggle-glyph">
+      <label><input type="checkbox" class="js-toggle" checked/>
+        <i></i>
+        <span>Green Dots</span>
+      </label>
+    </div>
+    <div class="qvan">(<span class="now"></span><span class="total">...</span>)</div>
   </div>
-  <div class="checkbox-glyph toggle-succses toggle-glyph">
-    <label><input type="checkbox" class="js-toggle" link="b" checked />
-      <i></i>
-      <span>B </span>
-      <span class="qvan">(...)</span>
-    </label>
-  </div>
-  <div class="checkbox-glyph toggle-succses toggle-glyph">
-    <label><input type="checkbox" class="js-toggle" link="c" checked />
-      <i></i>
-      <span>C </span>
-      <span class="qvan">(...)</span>
-    </label>
+
+  <div link="c">
+    <div class="checkbox-glyph toggle-danger toggle-glyph">
+      <label><input type="checkbox" class="js-toggle" checked/>
+        <i></i>
+        <span>Red Dots</span>
+      </label>
+    </div>
+    <div class="qvan">(<span class="now"></span><span class="total">...</span>)</div>
   </div>
 
 
